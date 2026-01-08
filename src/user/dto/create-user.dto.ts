@@ -12,7 +12,7 @@ export class CreateUserDto {
   phone: string;
   @IsString()
   role: UserRole;
-  @IsString()
   @IsOptional()
-  refresh_token?: string;
+  @IsString()
+  refresh_token?: string | null;
 }

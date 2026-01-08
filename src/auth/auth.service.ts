@@ -3,6 +3,7 @@ import {
   ConflictException,
   ForbiddenException,
   Injectable,
+  NotFoundException,
 } from '@nestjs/common';
 import { UserRepository } from '../user/user.repository.js';
 import { CreateUserDto } from '../user/dto/create-user.dto.js';
@@ -53,6 +54,18 @@ export class AuthService {
       userId: user.id,
       role: user.role,
     });
+  }
+
+  async userLogout(userId: string) {
+    const user = await this.userRepository.findOne(userId);
+    if (!user || !user.refresh_token)
+      throw new BadRequestException('User not found');
+    try {
+      await this.userRepository.update(userId, { refresh_token: null });
+      return { message: 'User logout success!' };
+    } catch (error) {
+      return { message: 'User logout failed!' };
+    }
   }
 
   async refreshToken(userId: string, token: string) {
