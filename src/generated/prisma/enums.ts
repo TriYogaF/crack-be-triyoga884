@@ -45,6 +45,14 @@ export const PaymentStatus = {
 export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
 
 
+export const PaymentMethod = {
+  CREDIT_CARD: 'CREDIT_CARD',
+  TRANSFER: 'TRANSFER'
+} as const
+
+export type PaymentMethod = (typeof PaymentMethod)[keyof typeof PaymentMethod]
+
+
 export const BlockReason = {
   MAINTENANCE: 'MAINTENANCE',
   HOLIDAY: 'HOLIDAY'

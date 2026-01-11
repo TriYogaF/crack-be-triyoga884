@@ -881,9 +881,8 @@ export type BlockedTimeScalarFieldEnum = (typeof BlockedTimeScalarFieldEnum)[key
 export const PaymentScalarFieldEnum = {
   id: 'id',
   bookingId: 'bookingId',
+  method: 'method',
   amount: 'amount',
-  provider: 'provider',
-  externalId: 'externalId',
   status: 'status',
   createAt: 'createAt'
 } as const
@@ -1023,6 +1022,20 @@ export type EnumBlockReasonFieldRefInput<$PrismaModel> = FieldRefInputType<$Pris
  * Reference to a field of type 'BlockReason[]'
  */
 export type ListEnumBlockReasonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BlockReason[]'>
+    
+
+
+/**
+ * Reference to a field of type 'PaymentMethod'
+ */
+export type EnumPaymentMethodFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentMethod'>
+    
+
+
+/**
+ * Reference to a field of type 'PaymentMethod[]'
+ */
+export type ListEnumPaymentMethodFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentMethod[]'>
     
 
 

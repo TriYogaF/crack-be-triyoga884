@@ -37,6 +37,11 @@ enum PaymentStatus {
   FAILED
 }
 
+enum PaymentMethod {
+  CREDIT_CARD
+  TRANSFER
+}
+
 enum BlockReason {
   MAINTENANCE
   HOLIDAY
@@ -111,12 +116,11 @@ model BlockedTime {
 }
 
 model Payment {
-  id         String        @id @default(uuid())
-  bookingId  String        @unique
-  amount     Float
-  provider   String // "xendit"
-  externalId String
-  status     PaymentStatus @default(PENDING)
+  id        String        @id @default(uuid())
+  bookingId String        @unique
+  method    PaymentMethod
+  amount    Float
+  status    PaymentStatus @default(PENDING)
 
   booking  Booking  @relation(fields: [bookingId], references: [id])
   createAt DateTime @default(now())

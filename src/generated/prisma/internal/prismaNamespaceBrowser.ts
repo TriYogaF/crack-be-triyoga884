@@ -138,9 +138,8 @@ export type BlockedTimeScalarFieldEnum = (typeof BlockedTimeScalarFieldEnum)[key
 export const PaymentScalarFieldEnum = {
   id: 'id',
   bookingId: 'bookingId',
+  method: 'method',
   amount: 'amount',
-  provider: 'provider',
-  externalId: 'externalId',
   status: 'status',
   createAt: 'createAt'
 } as const
