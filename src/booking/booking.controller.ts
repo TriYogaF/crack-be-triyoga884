@@ -17,11 +17,12 @@ import { RolesGuard } from '../common/guards/roles.guard.js';
 import { reqProp } from '../common/types/types.js';
 import { Roles } from '../common/decorators/roles.decorator.js';
 
-@UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('booking')
 export class BookingController {
   constructor(private readonly bookingService: BookingService) {}
 
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('USER')
   @Post()
   create(
     @Body() createBookingDto: CreateBookingDto,
@@ -30,28 +31,32 @@ export class BookingController {
     return this.bookingService.create(createBookingDto, req.user);
   }
 
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Get('me')
   @Roles('USER')
   findAllMyBookings(@Req() req: { user: reqProp }) {
     return this.bookingService.findAllMyBookings(req.user.userId);
   }
 
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Get()
   @Roles('ADMIN')
   findAll() {
     return this.bookingService.findAll();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   findOne(@Param('id') id: string, @Req() req: { user: reqProp }) {
     return this.bookingService.findOne(id, req.user);
   }
 
-  @Get('unavailable/:coworkingSpaceId')
-  findUnavailableBookings(@Param('coworkingSpaceId') coworkingSpaceId: string) {
+  @Get(':id/availability')
+  findUnavailableBookings(@Param('id') coworkingSpaceId: string) {
     return this.bookingService.findUnavailableBookings(coworkingSpaceId);
   }
 
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Get('space/:id')
   findBySpaceId(
     @Param('id') coworkingSpaceId: string,
@@ -60,6 +65,7 @@ export class BookingController {
     return this.bookingService.findByUserAndSpace(req.user, coworkingSpaceId);
   }
 
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Patch(':id')
   update(
     @Param('id') id: string,
@@ -69,6 +75,7 @@ export class BookingController {
     return this.bookingService.update(id, updateBookingDto, req.user);
   }
 
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Delete(':id')
   remove(@Param('id') id: string, @Req() req: { user: reqProp }) {
     return this.bookingService.remove(id, req.user);

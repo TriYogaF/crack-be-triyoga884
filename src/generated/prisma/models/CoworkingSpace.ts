@@ -69,6 +69,7 @@ export type CoworkingSpaceCountAggregateOutputType = {
   address: number
   description: number
   amenities: number
+  images: number
   pricePerDay: number
   type: number
   isActive: number
@@ -122,6 +123,7 @@ export type CoworkingSpaceCountAggregateInputType = {
   address?: true
   description?: true
   amenities?: true
+  images?: true
   pricePerDay?: true
   type?: true
   isActive?: true
@@ -224,6 +226,7 @@ export type CoworkingSpaceGroupByOutputType = {
   address: string
   description: string
   amenities: string[]
+  images: string[]
   pricePerDay: number
   type: $Enums.RoomType
   isActive: boolean
@@ -262,6 +265,7 @@ export type CoworkingSpaceWhereInput = {
   address?: Prisma.StringFilter<"CoworkingSpace"> | string
   description?: Prisma.StringFilter<"CoworkingSpace"> | string
   amenities?: Prisma.StringNullableListFilter<"CoworkingSpace">
+  images?: Prisma.StringNullableListFilter<"CoworkingSpace">
   pricePerDay?: Prisma.FloatFilter<"CoworkingSpace"> | number
   type?: Prisma.EnumRoomTypeFilter<"CoworkingSpace"> | $Enums.RoomType
   isActive?: Prisma.BoolFilter<"CoworkingSpace"> | boolean
@@ -280,6 +284,7 @@ export type CoworkingSpaceOrderByWithRelationInput = {
   address?: Prisma.SortOrder
   description?: Prisma.SortOrder
   amenities?: Prisma.SortOrder
+  images?: Prisma.SortOrder
   pricePerDay?: Prisma.SortOrder
   type?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -301,6 +306,7 @@ export type CoworkingSpaceWhereUniqueInput = Prisma.AtLeast<{
   address?: Prisma.StringFilter<"CoworkingSpace"> | string
   description?: Prisma.StringFilter<"CoworkingSpace"> | string
   amenities?: Prisma.StringNullableListFilter<"CoworkingSpace">
+  images?: Prisma.StringNullableListFilter<"CoworkingSpace">
   pricePerDay?: Prisma.FloatFilter<"CoworkingSpace"> | number
   type?: Prisma.EnumRoomTypeFilter<"CoworkingSpace"> | $Enums.RoomType
   isActive?: Prisma.BoolFilter<"CoworkingSpace"> | boolean
@@ -319,6 +325,7 @@ export type CoworkingSpaceOrderByWithAggregationInput = {
   address?: Prisma.SortOrder
   description?: Prisma.SortOrder
   amenities?: Prisma.SortOrder
+  images?: Prisma.SortOrder
   pricePerDay?: Prisma.SortOrder
   type?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -342,6 +349,7 @@ export type CoworkingSpaceScalarWhereWithAggregatesInput = {
   address?: Prisma.StringWithAggregatesFilter<"CoworkingSpace"> | string
   description?: Prisma.StringWithAggregatesFilter<"CoworkingSpace"> | string
   amenities?: Prisma.StringNullableListFilter<"CoworkingSpace">
+  images?: Prisma.StringNullableListFilter<"CoworkingSpace">
   pricePerDay?: Prisma.FloatWithAggregatesFilter<"CoworkingSpace"> | number
   type?: Prisma.EnumRoomTypeWithAggregatesFilter<"CoworkingSpace"> | $Enums.RoomType
   isActive?: Prisma.BoolWithAggregatesFilter<"CoworkingSpace"> | boolean
@@ -356,6 +364,7 @@ export type CoworkingSpaceCreateInput = {
   address: string
   description: string
   amenities?: Prisma.CoworkingSpaceCreateamenitiesInput | string[]
+  images?: Prisma.CoworkingSpaceCreateimagesInput | string[]
   pricePerDay: number
   type: $Enums.RoomType
   isActive?: boolean
@@ -374,6 +383,7 @@ export type CoworkingSpaceUncheckedCreateInput = {
   address: string
   description: string
   amenities?: Prisma.CoworkingSpaceCreateamenitiesInput | string[]
+  images?: Prisma.CoworkingSpaceCreateimagesInput | string[]
   pricePerDay: number
   type: $Enums.RoomType
   isActive?: boolean
@@ -390,6 +400,7 @@ export type CoworkingSpaceUpdateInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amenities?: Prisma.CoworkingSpaceUpdateamenitiesInput | string[]
+  images?: Prisma.CoworkingSpaceUpdateimagesInput | string[]
   pricePerDay?: Prisma.FloatFieldUpdateOperationsInput | number
   type?: Prisma.EnumRoomTypeFieldUpdateOperationsInput | $Enums.RoomType
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -408,6 +419,7 @@ export type CoworkingSpaceUncheckedUpdateInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amenities?: Prisma.CoworkingSpaceUpdateamenitiesInput | string[]
+  images?: Prisma.CoworkingSpaceUpdateimagesInput | string[]
   pricePerDay?: Prisma.FloatFieldUpdateOperationsInput | number
   type?: Prisma.EnumRoomTypeFieldUpdateOperationsInput | $Enums.RoomType
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -425,6 +437,7 @@ export type CoworkingSpaceCreateManyInput = {
   address: string
   description: string
   amenities?: Prisma.CoworkingSpaceCreateamenitiesInput | string[]
+  images?: Prisma.CoworkingSpaceCreateimagesInput | string[]
   pricePerDay: number
   type: $Enums.RoomType
   isActive?: boolean
@@ -439,6 +452,7 @@ export type CoworkingSpaceUpdateManyMutationInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amenities?: Prisma.CoworkingSpaceUpdateamenitiesInput | string[]
+  images?: Prisma.CoworkingSpaceUpdateimagesInput | string[]
   pricePerDay?: Prisma.FloatFieldUpdateOperationsInput | number
   type?: Prisma.EnumRoomTypeFieldUpdateOperationsInput | $Enums.RoomType
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -454,6 +468,7 @@ export type CoworkingSpaceUncheckedUpdateManyInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amenities?: Prisma.CoworkingSpaceUpdateamenitiesInput | string[]
+  images?: Prisma.CoworkingSpaceUpdateimagesInput | string[]
   pricePerDay?: Prisma.FloatFieldUpdateOperationsInput | number
   type?: Prisma.EnumRoomTypeFieldUpdateOperationsInput | $Enums.RoomType
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -487,6 +502,7 @@ export type CoworkingSpaceCountOrderByAggregateInput = {
   address?: Prisma.SortOrder
   description?: Prisma.SortOrder
   amenities?: Prisma.SortOrder
+  images?: Prisma.SortOrder
   pricePerDay?: Prisma.SortOrder
   type?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -582,7 +598,16 @@ export type CoworkingSpaceCreateamenitiesInput = {
   set: string[]
 }
 
+export type CoworkingSpaceCreateimagesInput = {
+  set: string[]
+}
+
 export type CoworkingSpaceUpdateamenitiesInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
+export type CoworkingSpaceUpdateimagesInput = {
   set?: string[]
   push?: string | string[]
 }
@@ -637,6 +662,7 @@ export type CoworkingSpaceCreateWithoutOwnerInput = {
   address: string
   description: string
   amenities?: Prisma.CoworkingSpaceCreateamenitiesInput | string[]
+  images?: Prisma.CoworkingSpaceCreateimagesInput | string[]
   pricePerDay: number
   type: $Enums.RoomType
   isActive?: boolean
@@ -653,6 +679,7 @@ export type CoworkingSpaceUncheckedCreateWithoutOwnerInput = {
   address: string
   description: string
   amenities?: Prisma.CoworkingSpaceCreateamenitiesInput | string[]
+  images?: Prisma.CoworkingSpaceCreateimagesInput | string[]
   pricePerDay: number
   type: $Enums.RoomType
   isActive?: boolean
@@ -699,6 +726,7 @@ export type CoworkingSpaceScalarWhereInput = {
   address?: Prisma.StringFilter<"CoworkingSpace"> | string
   description?: Prisma.StringFilter<"CoworkingSpace"> | string
   amenities?: Prisma.StringNullableListFilter<"CoworkingSpace">
+  images?: Prisma.StringNullableListFilter<"CoworkingSpace">
   pricePerDay?: Prisma.FloatFilter<"CoworkingSpace"> | number
   type?: Prisma.EnumRoomTypeFilter<"CoworkingSpace"> | $Enums.RoomType
   isActive?: Prisma.BoolFilter<"CoworkingSpace"> | boolean
@@ -713,6 +741,7 @@ export type CoworkingSpaceCreateWithoutBookingInput = {
   address: string
   description: string
   amenities?: Prisma.CoworkingSpaceCreateamenitiesInput | string[]
+  images?: Prisma.CoworkingSpaceCreateimagesInput | string[]
   pricePerDay: number
   type: $Enums.RoomType
   isActive?: boolean
@@ -730,6 +759,7 @@ export type CoworkingSpaceUncheckedCreateWithoutBookingInput = {
   address: string
   description: string
   amenities?: Prisma.CoworkingSpaceCreateamenitiesInput | string[]
+  images?: Prisma.CoworkingSpaceCreateimagesInput | string[]
   pricePerDay: number
   type: $Enums.RoomType
   isActive?: boolean
@@ -761,6 +791,7 @@ export type CoworkingSpaceUpdateWithoutBookingInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amenities?: Prisma.CoworkingSpaceUpdateamenitiesInput | string[]
+  images?: Prisma.CoworkingSpaceUpdateimagesInput | string[]
   pricePerDay?: Prisma.FloatFieldUpdateOperationsInput | number
   type?: Prisma.EnumRoomTypeFieldUpdateOperationsInput | $Enums.RoomType
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -778,6 +809,7 @@ export type CoworkingSpaceUncheckedUpdateWithoutBookingInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amenities?: Prisma.CoworkingSpaceUpdateamenitiesInput | string[]
+  images?: Prisma.CoworkingSpaceUpdateimagesInput | string[]
   pricePerDay?: Prisma.FloatFieldUpdateOperationsInput | number
   type?: Prisma.EnumRoomTypeFieldUpdateOperationsInput | $Enums.RoomType
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -793,6 +825,7 @@ export type CoworkingSpaceCreateWithoutBlockedTimesInput = {
   address: string
   description: string
   amenities?: Prisma.CoworkingSpaceCreateamenitiesInput | string[]
+  images?: Prisma.CoworkingSpaceCreateimagesInput | string[]
   pricePerDay: number
   type: $Enums.RoomType
   isActive?: boolean
@@ -810,6 +843,7 @@ export type CoworkingSpaceUncheckedCreateWithoutBlockedTimesInput = {
   address: string
   description: string
   amenities?: Prisma.CoworkingSpaceCreateamenitiesInput | string[]
+  images?: Prisma.CoworkingSpaceCreateimagesInput | string[]
   pricePerDay: number
   type: $Enums.RoomType
   isActive?: boolean
@@ -841,6 +875,7 @@ export type CoworkingSpaceUpdateWithoutBlockedTimesInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amenities?: Prisma.CoworkingSpaceUpdateamenitiesInput | string[]
+  images?: Prisma.CoworkingSpaceUpdateimagesInput | string[]
   pricePerDay?: Prisma.FloatFieldUpdateOperationsInput | number
   type?: Prisma.EnumRoomTypeFieldUpdateOperationsInput | $Enums.RoomType
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -858,6 +893,7 @@ export type CoworkingSpaceUncheckedUpdateWithoutBlockedTimesInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amenities?: Prisma.CoworkingSpaceUpdateamenitiesInput | string[]
+  images?: Prisma.CoworkingSpaceUpdateimagesInput | string[]
   pricePerDay?: Prisma.FloatFieldUpdateOperationsInput | number
   type?: Prisma.EnumRoomTypeFieldUpdateOperationsInput | $Enums.RoomType
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -873,6 +909,7 @@ export type CoworkingSpaceCreateManyOwnerInput = {
   address: string
   description: string
   amenities?: Prisma.CoworkingSpaceCreateamenitiesInput | string[]
+  images?: Prisma.CoworkingSpaceCreateimagesInput | string[]
   pricePerDay: number
   type: $Enums.RoomType
   isActive?: boolean
@@ -887,6 +924,7 @@ export type CoworkingSpaceUpdateWithoutOwnerInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amenities?: Prisma.CoworkingSpaceUpdateamenitiesInput | string[]
+  images?: Prisma.CoworkingSpaceUpdateimagesInput | string[]
   pricePerDay?: Prisma.FloatFieldUpdateOperationsInput | number
   type?: Prisma.EnumRoomTypeFieldUpdateOperationsInput | $Enums.RoomType
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -903,6 +941,7 @@ export type CoworkingSpaceUncheckedUpdateWithoutOwnerInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amenities?: Prisma.CoworkingSpaceUpdateamenitiesInput | string[]
+  images?: Prisma.CoworkingSpaceUpdateimagesInput | string[]
   pricePerDay?: Prisma.FloatFieldUpdateOperationsInput | number
   type?: Prisma.EnumRoomTypeFieldUpdateOperationsInput | $Enums.RoomType
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -919,6 +958,7 @@ export type CoworkingSpaceUncheckedUpdateManyWithoutOwnerInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amenities?: Prisma.CoworkingSpaceUpdateamenitiesInput | string[]
+  images?: Prisma.CoworkingSpaceUpdateimagesInput | string[]
   pricePerDay?: Prisma.FloatFieldUpdateOperationsInput | number
   type?: Prisma.EnumRoomTypeFieldUpdateOperationsInput | $Enums.RoomType
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -974,6 +1014,7 @@ export type CoworkingSpaceSelect<ExtArgs extends runtime.Types.Extensions.Intern
   address?: boolean
   description?: boolean
   amenities?: boolean
+  images?: boolean
   pricePerDay?: boolean
   type?: boolean
   isActive?: boolean
@@ -993,6 +1034,7 @@ export type CoworkingSpaceSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   address?: boolean
   description?: boolean
   amenities?: boolean
+  images?: boolean
   pricePerDay?: boolean
   type?: boolean
   isActive?: boolean
@@ -1009,6 +1051,7 @@ export type CoworkingSpaceSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   address?: boolean
   description?: boolean
   amenities?: boolean
+  images?: boolean
   pricePerDay?: boolean
   type?: boolean
   isActive?: boolean
@@ -1025,6 +1068,7 @@ export type CoworkingSpaceSelectScalar = {
   address?: boolean
   description?: boolean
   amenities?: boolean
+  images?: boolean
   pricePerDay?: boolean
   type?: boolean
   isActive?: boolean
@@ -1033,7 +1077,7 @@ export type CoworkingSpaceSelectScalar = {
   updatedAt?: boolean
 }
 
-export type CoworkingSpaceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ownerId" | "name" | "address" | "description" | "amenities" | "pricePerDay" | "type" | "isActive" | "isVerified" | "createdAt" | "updatedAt", ExtArgs["result"]["coworkingSpace"]>
+export type CoworkingSpaceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ownerId" | "name" | "address" | "description" | "amenities" | "images" | "pricePerDay" | "type" | "isActive" | "isVerified" | "createdAt" | "updatedAt", ExtArgs["result"]["coworkingSpace"]>
 export type CoworkingSpaceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   booking?: boolean | Prisma.CoworkingSpace$bookingArgs<ExtArgs>
   blockedTimes?: boolean | Prisma.CoworkingSpace$blockedTimesArgs<ExtArgs>
@@ -1061,6 +1105,7 @@ export type $CoworkingSpacePayload<ExtArgs extends runtime.Types.Extensions.Inte
     address: string
     description: string
     amenities: string[]
+    images: string[]
     pricePerDay: number
     type: $Enums.RoomType
     isActive: boolean
@@ -1499,6 +1544,7 @@ export interface CoworkingSpaceFieldRefs {
   readonly address: Prisma.FieldRef<"CoworkingSpace", 'String'>
   readonly description: Prisma.FieldRef<"CoworkingSpace", 'String'>
   readonly amenities: Prisma.FieldRef<"CoworkingSpace", 'String[]'>
+  readonly images: Prisma.FieldRef<"CoworkingSpace", 'String[]'>
   readonly pricePerDay: Prisma.FieldRef<"CoworkingSpace", 'Float'>
   readonly type: Prisma.FieldRef<"CoworkingSpace", 'RoomType'>
   readonly isActive: Prisma.FieldRef<"CoworkingSpace", 'Boolean'>

@@ -7,12 +7,12 @@ import { UpdateBookingDto } from './dto/update-booking.dto.js';
 export class BookingRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  createBooking(data: CreateBookingDto, userId: string) {
+  createBooking(data: CreateBookingDto, userId: string, totalPrice: number) {
     return this.prisma.booking.create({
       data: {
-        startTime: data.startTime,
-        endTime: data.endTime,
-        totalPrice: data.totalPrice,
+        startDate: new Date(data.startDate),
+        endDate: new Date(data.endDate),
+        totalPrice: totalPrice,
         user: {
           connect: { id: userId },
         },
@@ -40,7 +40,7 @@ export class BookingRepository {
   findUnavailableBookings(coworkingSpaceId: string) {
     return this.prisma.booking.findMany({
       where: { coworkingSpaceId },
-      select: { startTime: true, endTime: true },
+      select: { startDate: true, endDate: true },
     });
   }
 

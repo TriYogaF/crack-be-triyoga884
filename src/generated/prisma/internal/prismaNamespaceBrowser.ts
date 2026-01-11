@@ -96,6 +96,7 @@ export const CoworkingSpaceScalarFieldEnum = {
   address: 'address',
   description: 'description',
   amenities: 'amenities',
+  images: 'images',
   pricePerDay: 'pricePerDay',
   type: 'type',
   isActive: 'isActive',
@@ -111,8 +112,8 @@ export const BookingScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   coworkingSpaceId: 'coworkingSpaceId',
-  startTime: 'startTime',
-  endTime: 'endTime',
+  startDate: 'startDate',
+  endDate: 'endDate',
   totalPrice: 'totalPrice',
   status: 'status',
   createdAt: 'createdAt',
@@ -125,8 +126,8 @@ export type BookingScalarFieldEnum = (typeof BookingScalarFieldEnum)[keyof typeo
 export const BlockedTimeScalarFieldEnum = {
   id: 'id',
   coworkingSpaceId: 'coworkingSpaceId',
-  startTime: 'startTime',
-  endTime: 'endTime',
+  startDate: 'startDate',
+  endDate: 'endDate',
   reason: 'reason',
   createAt: 'createAt'
 } as const

@@ -66,6 +66,7 @@ model CoworkingSpace {
   address     String
   description String
   amenities   String[]
+  images      String[]
   pricePerDay Float
   type        RoomType
   isActive    Boolean  @default(true)
@@ -84,8 +85,8 @@ model Booking {
   userId           String
   coworkingSpaceId String
 
-  startTime  DateTime      @db.Date
-  endTime    DateTime      @db.Date
+  startDate  DateTime      @db.Date
+  endDate    DateTime      @db.Date
   totalPrice Float
   status     BookingStatus @default(PENDING)
 
@@ -100,8 +101,8 @@ model Booking {
 model BlockedTime {
   id               String      @id @default(uuid())
   coworkingSpaceId String
-  startTime        DateTime    @db.Date
-  endTime          DateTime    @db.Date
+  startDate        DateTime    @db.Date
+  endDate          DateTime    @db.Date
   reason           BlockReason
 
   coworkingSpace CoworkingSpace @relation(fields: [coworkingSpaceId], references: [id])

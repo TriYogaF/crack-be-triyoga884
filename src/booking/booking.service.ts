@@ -42,7 +42,14 @@ export class BookingService {
         'Only users with USER role can create bookings',
       );
     }
-    return this.repo.createBooking(createBookingDto, user.userId);
+
+    const price = checkCoworkingSpace.pricePerDay;
+    const totalDays = this.calculateDays(
+      new Date(createBookingDto.startDate),
+      new Date(createBookingDto.endDate),
+    );
+    const totalPrice = price * totalDays;
+    return this.repo.createBooking(createBookingDto, user.userId, totalPrice);
   }
 
   findUnavailableBookings(coworkingSpaceId: string) {
@@ -127,5 +134,19 @@ export class BookingService {
       );
     }
     return this.repo.delete(id);
+  }
+
+  calculateDays(start: Date, end: Date): number {
+    const MS_PER_DAY = 1000 * 60 * 60 * 24;
+
+    const startUTC = Date.UTC(
+      start.getFullYear(),
+      start.getMonth(),
+      start.getDate(),
+    );
+
+    const endUTC = Date.UTC(end.getFullYear(), end.getMonth(), end.getDate());
+
+    return Math.floor((endUTC - startUTC) / MS_PER_DAY) + 1;
   }
 }

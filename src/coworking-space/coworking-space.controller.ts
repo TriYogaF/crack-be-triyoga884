@@ -18,12 +18,12 @@ import { RolesGuard } from '../common/guards/roles.guard.js';
 import { Roles } from '../common/decorators/roles.decorator.js';
 import type { reqProp } from '../common/types/types.js';
 
-@UseGuards(JwtAuthGuard, RolesGuard)
-@Controller('coworking-space')
+@Controller('workspaces')
 export class CoworkingSpaceController {
   constructor(private readonly coworkingSpaceService: CoworkingSpaceService) {}
 
   @Post()
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('PROVIDER')
   create(
     @Body() createCoworkingSpaceDto: CreateCoworkingSpaceDto,
@@ -33,13 +33,11 @@ export class CoworkingSpaceController {
   }
 
   @Get('unverified')
-  @Roles('ADMIN')
   findAllNotVerified() {
     return this.coworkingSpaceService.findAllUnverified();
   }
 
   @Get('verified')
-  @Roles('USER')
   findAllVerified() {
     return this.coworkingSpaceService.findAllVerified();
   }
@@ -54,6 +52,7 @@ export class CoworkingSpaceController {
   }
 
   @Get()
+  @UseGuards(RolesGuard)
   @Roles('ADMIN')
   findAll() {
     return this.coworkingSpaceService.findAll();
@@ -65,12 +64,15 @@ export class CoworkingSpaceController {
   }
 
   @Get('user/:id')
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('PROVIDER')
   getWorkspacesByUserId(@Param('id') id: string) {
     return this.coworkingSpaceService.getWorkspacesByUserId(id);
   }
 
   @Patch(':id')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('ADMIN', 'PROVIDER')
   update(
     @Param('id') id: string,
     @Body() updateCoworkingSpaceDto: UpdateCoworkingSpaceDto,
@@ -84,11 +86,14 @@ export class CoworkingSpaceController {
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('ADMIN', 'PROVIDER')
   remove(@Param('id') id: string, @Req() req: { user: reqProp }) {
     return this.coworkingSpaceService.remove(id, req.user);
   }
 
   @Patch('verify/:id')
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('ADMIN')
   verifyCoworkingSpace(@Param('id') id: string) {
     return this.coworkingSpaceService.verifyCoworkingSpace(id);

@@ -15,6 +15,10 @@ export class CreateCoworkingSpaceDto {
   @IsString({ each: true })
   amenities: string[];
 
+  @IsArray()
+  @IsString({ each: true })
+  images: string[];
+
   @IsNumber()
   pricePerDay: number;
 

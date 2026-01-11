@@ -1,19 +1,11 @@
-import { Type } from 'class-transformer';
-import { IsDate, IsNumber, IsString } from 'class-validator';
-import { IsStartBeforeEnd } from '../../common/decorators/dates.decorator.js';
+import { IsString } from 'class-validator';
 
 export class CreateBookingDto {
-  @Type(() => Date)
-  @IsDate()
-  @IsStartBeforeEnd({ message: 'startTime must be before endTime' })
-  startTime: Date;
+  @IsString()
+  startDate: string;
 
-  @Type(() => Date)
-  @IsDate()
-  endTime: Date;
-
-  @IsNumber()
-  totalPrice: number;
+  @IsString()
+  endDate: string;
 
   @IsString()
   coworkingSpaceId: string;

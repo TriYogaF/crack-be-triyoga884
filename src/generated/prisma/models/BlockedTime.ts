@@ -27,8 +27,8 @@ export type AggregateBlockedTime = {
 export type BlockedTimeMinAggregateOutputType = {
   id: string | null
   coworkingSpaceId: string | null
-  startTime: Date | null
-  endTime: Date | null
+  startDate: Date | null
+  endDate: Date | null
   reason: $Enums.BlockReason | null
   createAt: Date | null
 }
@@ -36,8 +36,8 @@ export type BlockedTimeMinAggregateOutputType = {
 export type BlockedTimeMaxAggregateOutputType = {
   id: string | null
   coworkingSpaceId: string | null
-  startTime: Date | null
-  endTime: Date | null
+  startDate: Date | null
+  endDate: Date | null
   reason: $Enums.BlockReason | null
   createAt: Date | null
 }
@@ -45,8 +45,8 @@ export type BlockedTimeMaxAggregateOutputType = {
 export type BlockedTimeCountAggregateOutputType = {
   id: number
   coworkingSpaceId: number
-  startTime: number
-  endTime: number
+  startDate: number
+  endDate: number
   reason: number
   createAt: number
   _all: number
@@ -56,8 +56,8 @@ export type BlockedTimeCountAggregateOutputType = {
 export type BlockedTimeMinAggregateInputType = {
   id?: true
   coworkingSpaceId?: true
-  startTime?: true
-  endTime?: true
+  startDate?: true
+  endDate?: true
   reason?: true
   createAt?: true
 }
@@ -65,8 +65,8 @@ export type BlockedTimeMinAggregateInputType = {
 export type BlockedTimeMaxAggregateInputType = {
   id?: true
   coworkingSpaceId?: true
-  startTime?: true
-  endTime?: true
+  startDate?: true
+  endDate?: true
   reason?: true
   createAt?: true
 }
@@ -74,8 +74,8 @@ export type BlockedTimeMaxAggregateInputType = {
 export type BlockedTimeCountAggregateInputType = {
   id?: true
   coworkingSpaceId?: true
-  startTime?: true
-  endTime?: true
+  startDate?: true
+  endDate?: true
   reason?: true
   createAt?: true
   _all?: true
@@ -156,8 +156,8 @@ export type BlockedTimeGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 export type BlockedTimeGroupByOutputType = {
   id: string
   coworkingSpaceId: string
-  startTime: Date
-  endTime: Date
+  startDate: Date
+  endDate: Date
   reason: $Enums.BlockReason
   createAt: Date
   _count: BlockedTimeCountAggregateOutputType | null
@@ -186,8 +186,8 @@ export type BlockedTimeWhereInput = {
   NOT?: Prisma.BlockedTimeWhereInput | Prisma.BlockedTimeWhereInput[]
   id?: Prisma.StringFilter<"BlockedTime"> | string
   coworkingSpaceId?: Prisma.StringFilter<"BlockedTime"> | string
-  startTime?: Prisma.DateTimeFilter<"BlockedTime"> | Date | string
-  endTime?: Prisma.DateTimeFilter<"BlockedTime"> | Date | string
+  startDate?: Prisma.DateTimeFilter<"BlockedTime"> | Date | string
+  endDate?: Prisma.DateTimeFilter<"BlockedTime"> | Date | string
   reason?: Prisma.EnumBlockReasonFilter<"BlockedTime"> | $Enums.BlockReason
   createAt?: Prisma.DateTimeFilter<"BlockedTime"> | Date | string
   coworkingSpace?: Prisma.XOR<Prisma.CoworkingSpaceScalarRelationFilter, Prisma.CoworkingSpaceWhereInput>
@@ -196,8 +196,8 @@ export type BlockedTimeWhereInput = {
 export type BlockedTimeOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   coworkingSpaceId?: Prisma.SortOrder
-  startTime?: Prisma.SortOrder
-  endTime?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
   reason?: Prisma.SortOrder
   createAt?: Prisma.SortOrder
   coworkingSpace?: Prisma.CoworkingSpaceOrderByWithRelationInput
@@ -209,8 +209,8 @@ export type BlockedTimeWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.BlockedTimeWhereInput[]
   NOT?: Prisma.BlockedTimeWhereInput | Prisma.BlockedTimeWhereInput[]
   coworkingSpaceId?: Prisma.StringFilter<"BlockedTime"> | string
-  startTime?: Prisma.DateTimeFilter<"BlockedTime"> | Date | string
-  endTime?: Prisma.DateTimeFilter<"BlockedTime"> | Date | string
+  startDate?: Prisma.DateTimeFilter<"BlockedTime"> | Date | string
+  endDate?: Prisma.DateTimeFilter<"BlockedTime"> | Date | string
   reason?: Prisma.EnumBlockReasonFilter<"BlockedTime"> | $Enums.BlockReason
   createAt?: Prisma.DateTimeFilter<"BlockedTime"> | Date | string
   coworkingSpace?: Prisma.XOR<Prisma.CoworkingSpaceScalarRelationFilter, Prisma.CoworkingSpaceWhereInput>
@@ -219,8 +219,8 @@ export type BlockedTimeWhereUniqueInput = Prisma.AtLeast<{
 export type BlockedTimeOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   coworkingSpaceId?: Prisma.SortOrder
-  startTime?: Prisma.SortOrder
-  endTime?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
   reason?: Prisma.SortOrder
   createAt?: Prisma.SortOrder
   _count?: Prisma.BlockedTimeCountOrderByAggregateInput
@@ -234,16 +234,16 @@ export type BlockedTimeScalarWhereWithAggregatesInput = {
   NOT?: Prisma.BlockedTimeScalarWhereWithAggregatesInput | Prisma.BlockedTimeScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"BlockedTime"> | string
   coworkingSpaceId?: Prisma.StringWithAggregatesFilter<"BlockedTime"> | string
-  startTime?: Prisma.DateTimeWithAggregatesFilter<"BlockedTime"> | Date | string
-  endTime?: Prisma.DateTimeWithAggregatesFilter<"BlockedTime"> | Date | string
+  startDate?: Prisma.DateTimeWithAggregatesFilter<"BlockedTime"> | Date | string
+  endDate?: Prisma.DateTimeWithAggregatesFilter<"BlockedTime"> | Date | string
   reason?: Prisma.EnumBlockReasonWithAggregatesFilter<"BlockedTime"> | $Enums.BlockReason
   createAt?: Prisma.DateTimeWithAggregatesFilter<"BlockedTime"> | Date | string
 }
 
 export type BlockedTimeCreateInput = {
   id?: string
-  startTime: Date | string
-  endTime: Date | string
+  startDate: Date | string
+  endDate: Date | string
   reason: $Enums.BlockReason
   createAt?: Date | string
   coworkingSpace: Prisma.CoworkingSpaceCreateNestedOneWithoutBlockedTimesInput
@@ -252,16 +252,16 @@ export type BlockedTimeCreateInput = {
 export type BlockedTimeUncheckedCreateInput = {
   id?: string
   coworkingSpaceId: string
-  startTime: Date | string
-  endTime: Date | string
+  startDate: Date | string
+  endDate: Date | string
   reason: $Enums.BlockReason
   createAt?: Date | string
 }
 
 export type BlockedTimeUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   reason?: Prisma.EnumBlockReasonFieldUpdateOperationsInput | $Enums.BlockReason
   createAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coworkingSpace?: Prisma.CoworkingSpaceUpdateOneRequiredWithoutBlockedTimesNestedInput
@@ -270,8 +270,8 @@ export type BlockedTimeUpdateInput = {
 export type BlockedTimeUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   coworkingSpaceId?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   reason?: Prisma.EnumBlockReasonFieldUpdateOperationsInput | $Enums.BlockReason
   createAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -279,16 +279,16 @@ export type BlockedTimeUncheckedUpdateInput = {
 export type BlockedTimeCreateManyInput = {
   id?: string
   coworkingSpaceId: string
-  startTime: Date | string
-  endTime: Date | string
+  startDate: Date | string
+  endDate: Date | string
   reason: $Enums.BlockReason
   createAt?: Date | string
 }
 
 export type BlockedTimeUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   reason?: Prisma.EnumBlockReasonFieldUpdateOperationsInput | $Enums.BlockReason
   createAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -296,8 +296,8 @@ export type BlockedTimeUpdateManyMutationInput = {
 export type BlockedTimeUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   coworkingSpaceId?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   reason?: Prisma.EnumBlockReasonFieldUpdateOperationsInput | $Enums.BlockReason
   createAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -315,8 +315,8 @@ export type BlockedTimeOrderByRelationAggregateInput = {
 export type BlockedTimeCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   coworkingSpaceId?: Prisma.SortOrder
-  startTime?: Prisma.SortOrder
-  endTime?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
   reason?: Prisma.SortOrder
   createAt?: Prisma.SortOrder
 }
@@ -324,8 +324,8 @@ export type BlockedTimeCountOrderByAggregateInput = {
 export type BlockedTimeMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   coworkingSpaceId?: Prisma.SortOrder
-  startTime?: Prisma.SortOrder
-  endTime?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
   reason?: Prisma.SortOrder
   createAt?: Prisma.SortOrder
 }
@@ -333,8 +333,8 @@ export type BlockedTimeMaxOrderByAggregateInput = {
 export type BlockedTimeMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   coworkingSpaceId?: Prisma.SortOrder
-  startTime?: Prisma.SortOrder
-  endTime?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
   reason?: Prisma.SortOrder
   createAt?: Prisma.SortOrder
 }
@@ -387,16 +387,16 @@ export type EnumBlockReasonFieldUpdateOperationsInput = {
 
 export type BlockedTimeCreateWithoutCoworkingSpaceInput = {
   id?: string
-  startTime: Date | string
-  endTime: Date | string
+  startDate: Date | string
+  endDate: Date | string
   reason: $Enums.BlockReason
   createAt?: Date | string
 }
 
 export type BlockedTimeUncheckedCreateWithoutCoworkingSpaceInput = {
   id?: string
-  startTime: Date | string
-  endTime: Date | string
+  startDate: Date | string
+  endDate: Date | string
   reason: $Enums.BlockReason
   createAt?: Date | string
 }
@@ -433,40 +433,40 @@ export type BlockedTimeScalarWhereInput = {
   NOT?: Prisma.BlockedTimeScalarWhereInput | Prisma.BlockedTimeScalarWhereInput[]
   id?: Prisma.StringFilter<"BlockedTime"> | string
   coworkingSpaceId?: Prisma.StringFilter<"BlockedTime"> | string
-  startTime?: Prisma.DateTimeFilter<"BlockedTime"> | Date | string
-  endTime?: Prisma.DateTimeFilter<"BlockedTime"> | Date | string
+  startDate?: Prisma.DateTimeFilter<"BlockedTime"> | Date | string
+  endDate?: Prisma.DateTimeFilter<"BlockedTime"> | Date | string
   reason?: Prisma.EnumBlockReasonFilter<"BlockedTime"> | $Enums.BlockReason
   createAt?: Prisma.DateTimeFilter<"BlockedTime"> | Date | string
 }
 
 export type BlockedTimeCreateManyCoworkingSpaceInput = {
   id?: string
-  startTime: Date | string
-  endTime: Date | string
+  startDate: Date | string
+  endDate: Date | string
   reason: $Enums.BlockReason
   createAt?: Date | string
 }
 
 export type BlockedTimeUpdateWithoutCoworkingSpaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   reason?: Prisma.EnumBlockReasonFieldUpdateOperationsInput | $Enums.BlockReason
   createAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type BlockedTimeUncheckedUpdateWithoutCoworkingSpaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   reason?: Prisma.EnumBlockReasonFieldUpdateOperationsInput | $Enums.BlockReason
   createAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type BlockedTimeUncheckedUpdateManyWithoutCoworkingSpaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   reason?: Prisma.EnumBlockReasonFieldUpdateOperationsInput | $Enums.BlockReason
   createAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -476,8 +476,8 @@ export type BlockedTimeUncheckedUpdateManyWithoutCoworkingSpaceInput = {
 export type BlockedTimeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   coworkingSpaceId?: boolean
-  startTime?: boolean
-  endTime?: boolean
+  startDate?: boolean
+  endDate?: boolean
   reason?: boolean
   createAt?: boolean
   coworkingSpace?: boolean | Prisma.CoworkingSpaceDefaultArgs<ExtArgs>
@@ -486,8 +486,8 @@ export type BlockedTimeSelect<ExtArgs extends runtime.Types.Extensions.InternalA
 export type BlockedTimeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   coworkingSpaceId?: boolean
-  startTime?: boolean
-  endTime?: boolean
+  startDate?: boolean
+  endDate?: boolean
   reason?: boolean
   createAt?: boolean
   coworkingSpace?: boolean | Prisma.CoworkingSpaceDefaultArgs<ExtArgs>
@@ -496,8 +496,8 @@ export type BlockedTimeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
 export type BlockedTimeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   coworkingSpaceId?: boolean
-  startTime?: boolean
-  endTime?: boolean
+  startDate?: boolean
+  endDate?: boolean
   reason?: boolean
   createAt?: boolean
   coworkingSpace?: boolean | Prisma.CoworkingSpaceDefaultArgs<ExtArgs>
@@ -506,13 +506,13 @@ export type BlockedTimeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 export type BlockedTimeSelectScalar = {
   id?: boolean
   coworkingSpaceId?: boolean
-  startTime?: boolean
-  endTime?: boolean
+  startDate?: boolean
+  endDate?: boolean
   reason?: boolean
   createAt?: boolean
 }
 
-export type BlockedTimeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "coworkingSpaceId" | "startTime" | "endTime" | "reason" | "createAt", ExtArgs["result"]["blockedTime"]>
+export type BlockedTimeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "coworkingSpaceId" | "startDate" | "endDate" | "reason" | "createAt", ExtArgs["result"]["blockedTime"]>
 export type BlockedTimeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   coworkingSpace?: boolean | Prisma.CoworkingSpaceDefaultArgs<ExtArgs>
 }
@@ -531,8 +531,8 @@ export type $BlockedTimePayload<ExtArgs extends runtime.Types.Extensions.Interna
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     coworkingSpaceId: string
-    startTime: Date
-    endTime: Date
+    startDate: Date
+    endDate: Date
     reason: $Enums.BlockReason
     createAt: Date
   }, ExtArgs["result"]["blockedTime"]>
@@ -961,8 +961,8 @@ export interface Prisma__BlockedTimeClient<T, Null = never, ExtArgs extends runt
 export interface BlockedTimeFieldRefs {
   readonly id: Prisma.FieldRef<"BlockedTime", 'String'>
   readonly coworkingSpaceId: Prisma.FieldRef<"BlockedTime", 'String'>
-  readonly startTime: Prisma.FieldRef<"BlockedTime", 'DateTime'>
-  readonly endTime: Prisma.FieldRef<"BlockedTime", 'DateTime'>
+  readonly startDate: Prisma.FieldRef<"BlockedTime", 'DateTime'>
+  readonly endDate: Prisma.FieldRef<"BlockedTime", 'DateTime'>
   readonly reason: Prisma.FieldRef<"BlockedTime", 'BlockReason'>
   readonly createAt: Prisma.FieldRef<"BlockedTime", 'DateTime'>
 }
