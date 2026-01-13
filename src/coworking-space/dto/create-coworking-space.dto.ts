@@ -1,4 +1,10 @@
-import { IsArray, IsNumber, IsString } from 'class-validator';
+import {
+  IsArray,
+  IsBoolean,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { RoomType } from '../../generated/prisma/enums.js';
 
 export class CreateCoworkingSpaceDto {
@@ -27,4 +33,8 @@ export class CreateCoworkingSpaceDto {
 
   @IsString()
   type: RoomType;
+
+  @IsBoolean()
+  @IsOptional()
+  isVerified?: boolean;
 }

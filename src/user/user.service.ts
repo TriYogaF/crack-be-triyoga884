@@ -35,12 +35,16 @@ export class UserService {
     return user;
   }
 
-  async update(id: string, updateUserDto: UpdateUserDto, userId: string) {
+  async update(
+    id: string,
+    updateUserDto: UpdateUserDto,
+    data: { userId: string; role: UserRole },
+  ) {
     const user = await this.repo.findOne(id);
     if (!user) {
       throw new NotFoundException('User not found');
     }
-    if (user.id !== userId) {
+    if (user.id !== data.userId && data.role !== UserRole.ADMIN) {
       throw new ForbiddenException('You are not allowed to update this user');
     }
     return this.repo.update(id, updateUserDto);

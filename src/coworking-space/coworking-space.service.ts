@@ -40,8 +40,8 @@ export class CoworkingSpaceService {
     return user;
   }
 
-  async findAll() {
-    const workspaces = await this.repo.findAll();
+  async findAll(isVerified?: boolean) {
+    const workspaces = await this.repo.findAll(isVerified);
     if (!workspaces) throw new NotFoundException('No coworking spaces found');
     return workspaces;
   }
@@ -49,20 +49,6 @@ export class CoworkingSpaceService {
   async findOne(id: string) {
     const workspaces = await this.repo.findOne(id);
     if (!workspaces) throw new NotFoundException('No coworking spaces found');
-    return workspaces;
-  }
-
-  async findAllUnverified() {
-    const workspaces = await this.repo.findAllUnverified();
-    if (workspaces.length === 0)
-      throw new NotFoundException('No unverified coworking spaces found');
-    return workspaces;
-  }
-
-  async findAllVerified() {
-    const workspaces = await this.repo.findAllverified();
-    if (workspaces.length === 0)
-      throw new NotFoundException('No verified coworking spaces found');
     return workspaces;
   }
 

@@ -16,7 +16,7 @@ import { Roles } from '../common/decorators/roles.decorator.js';
 import type { reqProp } from '../common/types/types.js';
 
 @UseGuards(JwtAuthGuard, RolesGuard)
-@Controller('user')
+@Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -44,7 +44,7 @@ export class UserController {
     @Body() updateUserDto: UpdateUserDto,
     @Req() req: { user: reqProp },
   ) {
-    return this.userService.update(id, updateUserDto, req.user.userId);
+    return this.userService.update(id, updateUserDto, req.user);
   }
 
   @Delete(':id')

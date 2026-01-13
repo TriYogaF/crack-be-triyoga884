@@ -32,16 +32,6 @@ export class CoworkingSpaceController {
     return this.coworkingSpaceService.create(createCoworkingSpaceDto, req.user);
   }
 
-  @Get('unverified')
-  findAllNotVerified() {
-    return this.coworkingSpaceService.findAllUnverified();
-  }
-
-  @Get('verified')
-  findAllVerified() {
-    return this.coworkingSpaceService.findAllVerified();
-  }
-
   @Get('search')
   @Roles('USER', 'PROVIDER', 'ADMIN')
   findByQuery(
@@ -52,10 +42,8 @@ export class CoworkingSpaceController {
   }
 
   @Get()
-  @UseGuards(RolesGuard)
-  @Roles('ADMIN')
-  findAll() {
-    return this.coworkingSpaceService.findAll();
+  findAll(@Query('isVerified') isVerified?: boolean) {
+    return this.coworkingSpaceService.findAll(isVerified);
   }
 
   @Get(':id')
@@ -90,12 +78,5 @@ export class CoworkingSpaceController {
   @Roles('ADMIN', 'PROVIDER')
   remove(@Param('id') id: string, @Req() req: { user: reqProp }) {
     return this.coworkingSpaceService.remove(id, req.user);
-  }
-
-  @Patch('verify/:id')
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('ADMIN')
-  verifyCoworkingSpace(@Param('id') id: string) {
-    return this.coworkingSpaceService.verifyCoworkingSpace(id);
   }
 }

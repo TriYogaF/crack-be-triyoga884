@@ -4,14 +4,19 @@ import { UserRole } from '../../generated/prisma/enums.js';
 export class CreateUserDto {
   @IsString()
   name: string;
+
   @IsEmail()
   email: string;
+
   @IsString()
   password: string;
+
   @IsString()
   phone: string;
+
   @IsString()
   role: UserRole;
+
   @IsOptional()
   @IsString()
   refresh_token?: string | null;

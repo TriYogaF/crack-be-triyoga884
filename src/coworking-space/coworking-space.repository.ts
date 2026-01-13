@@ -40,24 +40,14 @@ export class CoworkingSpaceRepository {
     return result?.coworkingSpaces;
   }
 
-  findAll() {
-    return this.prisma.coworkingSpace.findMany();
+  findAll(isVerified?: boolean) {
+    return this.prisma.coworkingSpace.findMany({
+      where: { isVerified: isVerified },
+    });
   }
 
   findOne(id: string) {
     return this.prisma.coworkingSpace.findUnique({ where: { id } });
-  }
-
-  findAllUnverified() {
-    return this.prisma.coworkingSpace.findMany({
-      where: { isVerified: false },
-    });
-  }
-
-  findAllverified() {
-    return this.prisma.coworkingSpace.findMany({
-      where: { isVerified: true },
-    });
   }
 
   findCoworkingSpaceByQuery(name?: string, location?: string) {
