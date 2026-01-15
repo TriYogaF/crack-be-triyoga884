@@ -9,6 +9,7 @@ import { CoworkingSpaceModule } from './coworking-space/coworking-space.module.j
 import { CustomLoggerModule } from './common/logger/logger.module.js';
 import { BookingModule } from './booking/booking.module.js';
 import { PaymentModule } from './payment/payment.module.js';
+import { StatModule } from './stat/stat.module.js';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { PaymentModule } from './payment/payment.module.js';
     CustomLoggerModule,
     BookingModule,
     PaymentModule,
+    StatModule,
   ],
   controllers: [AppController],
   providers: [AppService],

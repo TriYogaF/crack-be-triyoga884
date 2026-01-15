@@ -83,6 +83,7 @@ export class BookingRepository {
             type: true,
             amenities: true,
             pricePerDay: true,
+            capacity: true,
           },
         },
       },
