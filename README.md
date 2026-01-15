@@ -1,98 +1,264 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Crack BE – Coworking Space Booking API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Backend service for a coworking space booking platform built with NestJS and Prisma.  
+It provides authentication, coworking space management, bookings, payments, and statistics APIs.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## Tech Stack
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Node.js (TypeScript, ES modules)
+- [NestJS](https://nestjs.com/)
+- [Prisma](https://www.prisma.io/) + PostgreSQL
+- Authentication & Authorization
+  - `@nestjs/jwt`, `@nestjs/passport`, `passport-jwt`
+  - Role-based access control and custom guards
+- Validation & Transformation
+  - `class-validator`, `class-transformer`
+- Logging
+  - `nestjs-pino`, `pino-http`, `pino-pretty`, `pino-roll`
+- Testing
+  - Jest, Supertest, `@nestjs/testing`
+- Tooling
+  - ESLint, Prettier, TypeScript
 
-## Project setup
+---
+
+## Project Structure
+
+Main directories and modules:
+
+- `src/`
+  - `main.ts` – application entrypoint and bootstrap
+  - `app.module.ts` – root Nest module
+  - `auth/` – authentication (JWT, guards, strategies, controllers, services)
+  - `user/` – user management (controllers, services, repositories, DTOs)
+  - `coworking-space/` – coworking space CRUD, capacity, images, verification
+  - `booking/` – booking logic, create/update DTOs, booking repository
+  - `payment/` – payment entities, repository, and business logic
+  - `stat/` – statistics and reporting endpoints
+  - `prisma/` – Prisma module and service integration
+  - `common/`
+    - `decorators/` – custom decorators (dates, roles, validators)
+    - `guards/` – role and authorization guards
+    - `logger/` – logger module setup
+    - `types/` – shared types
+  - `generated/prisma/` – generated Prisma client code and models
+- `prisma/`
+  - `schema.prisma` – database schema definition
+  - `migrations/` – incremental SQL migrations
+  - `seed.ts` – database seeding script
+- `package.json` – dependencies, scripts, and Jest configuration
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18+ recommended)
+- npm (comes with Node)
+- PostgreSQL database instance
+
+### Installation
 
 ```bash
-$ pnpm install
+# Install dependencies
+npm install
 ```
 
-## Compile and run the project
+---
+
+## Environment Configuration
+
+Create a `.env` file in the project root with at least:
 
 ```bash
-# development
-$ pnpm run start
+DATABASE_URL="postgresql://user:password@localhost:5432/database_name?schema=public"
 
-# watch mode
-$ pnpm run start:dev
+# Server
+PORT=3000
 
-# production mode
-$ pnpm run start:prod
+# JWT (example names – adjust to your config module)
+JWT_ACCESS_TOKEN_SECRET="replace-with-strong-secret"
+JWT_ACCESS_TOKEN_EXPIRES_IN="15m"
+JWT_REFRESH_TOKEN_SECRET="replace-with-strong-secret"
+JWT_REFRESH_TOKEN_EXPIRES_IN="7d"
 ```
 
-## Run tests
+You may have additional environment variables depending on integrations (e.g., third-party payment or storage providers). Check your configuration files and modules for the full list and make sure they are defined here.
+
+---
+
+## Database & Prisma
+
+Run migrations and generate the Prisma client:
 
 ```bash
-# unit tests
-$ pnpm run test
+# Apply all migrations to the database
+npx prisma migrate deploy
 
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+# Generate the Prisma client
+npx prisma generate
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Seed the database (if needed):
 
 ```bash
-$ pnpm install -g @nestjs/mau
-$ mau deploy
+npm run seed
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+This runs:
 
-## Resources
+```bash
+ts-node prisma/seed.ts
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+Make sure your `DATABASE_URL` is set before running migrations or seeding.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+---
 
-## Support
+## Running the Application
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Development
 
-## Stay in touch
+```bash
+npm run start:dev
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Starts the NestJS server in watch mode (auto-reload on file changes).
 
-## License
+### Regular Run
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+```bash
+npm run start
+```
+
+Runs the app in normal (non-watch) mode.
+
+### Production
+
+```bash
+# Build TypeScript to JavaScript
+npm run build
+
+# Run built app
+npm run start:prod
+```
+
+---
+
+## Available NPM Scripts
+
+From `package.json`:
+
+- `start` – start the NestJS app
+- `start:dev` – start in watch mode
+- `start:debug` – start with debug and watch
+- `start:prod` – run compiled app from `dist/main`
+- `build` – compile TypeScript using Nest CLI
+- `format` – format code with Prettier
+- `lint` – run ESLint with auto-fix
+- `test` – run unit tests
+- `test:watch` – run tests in watch mode
+- `test:cov` – run tests with coverage
+- `test:debug` – run tests with Node inspector
+- `test:e2e` – run end-to-end tests
+- `seed` – run Prisma seed script
+
+---
+
+## Testing
+
+Run the full unit test suite:
+
+```bash
+npm test
+```
+
+Other test commands:
+
+```bash
+# Watch mode
+npm run test:watch
+
+# Coverage report
+npm run test:cov
+
+# Debug tests
+npm run test:debug
+
+# End-to-end tests
+npm run test:e2e
+```
+
+Jest is configured in `package.json` under the `jest` field to look for `*.spec.ts` files inside `src/`.
+
+---
+
+## Core Modules Overview
+
+- **Auth Module (`src/auth/`)**
+  - Handles user login/registration and JWT-based authentication.
+  - Uses custom JWT strategy and guards for protected routes.
+  - Integrates with roles decorators and guards for authorization.
+
+- **User Module (`src/user/`)**
+  - Manages user entities and profiles.
+  - Exposes CRUD and profile-related endpoints via controller.
+  - Uses a repository layer for database access through Prisma.
+
+- **Coworking Space Module (`src/coworking-space/`)**
+  - CRUD operations for coworking spaces (name, address, capacity, images).
+  - Handles ownership, is_active, and is_verified flags.
+  - Uses custom DTOs for create/update operations.
+
+- **Booking Module (`src/booking/`)**
+  - Booking creation and management (start/end date, blocked times).
+  - Uses date decorators and validators from `src/common/decorators`.
+  - Integrates with CoworkingSpace and User models in Prisma.
+
+- **Payment Module (`src/payment/`)**
+  - Manages payment records associated with bookings.
+  - Uses Prisma models and repository for persistence.
+  - Recent migrations indicate evolving payment model (status, transaction references, etc.).
+
+- **Stat Module (`src/stat/`)**
+  - Exposes statistics endpoints (e.g., bookings, revenue, occupancy).
+  - Relies on data aggregated via Prisma queries.
+
+- **Prisma Module (`src/prisma/`)**
+  - Wraps Prisma client in a NestJS provider.
+  - Centralizes database access patterns across modules.
+
+- **Common Module (`src/common/`)**
+  - Reusable decorators, guards, logger, and shared types.
+  - Provides cross-cutting concerns like logging and authorization checks.
+
+---
+
+## Logging
+
+Logging is built using `nestjs-pino` and related packages:
+
+- Structured JSON logs in production.
+- Human-readable logs in development using `pino-pretty`.
+- Log rotation via `pino-roll` when configured.
+
+Check `src/common/logger/logger.module.ts` for exact configuration and to adjust log levels or destinations.
+
+---
+
+## Code Quality
+
+- Linting: `npm run lint`
+- Formatting: `npm run format`
+
+The project uses:
+
+- ESLint (`eslint`, `@eslint/js`, `typescript-eslint`)
+- Prettier (`prettier`, `eslint-config-prettier`, `eslint-plugin-prettier`)
+
+Configure rules and formatting preferences in the respective config files.
+
+---
