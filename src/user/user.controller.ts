@@ -21,7 +21,6 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get('me')
-  @Roles('PROVIDER', 'USER')
   getProfile(@Req() req: { user: reqProp }) {
     return this.userService.findOne(req.user.userId);
   }

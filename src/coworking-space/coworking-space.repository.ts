@@ -17,32 +17,17 @@ export class CoworkingSpaceRepository {
   }
 
   async getWorkspacesByUserId(id: string) {
-    const result = await this.prisma.user.findUnique({
-      where: { id },
-      include: {
-        coworkingSpaces: {
-          select: {
-            id: true,
-            name: true,
-            address: true,
-            description: true,
-            amenities: true,
-            images: true,
-            pricePerDay: true,
-            type: true,
-            capacity: true,
-            isActive: true,
-            isVerified: true,
-          },
-        },
-      },
+    const result = this.prisma.coworkingSpace.findMany({
+      where: { ownerId: id },
+      include: { owner: { select: { name: true } } },
     });
-    return result?.coworkingSpaces;
+    return result;
   }
 
   findAll(isVerified?: boolean) {
     return this.prisma.coworkingSpace.findMany({
       where: { isVerified: isVerified },
+      include: { owner: { select: { name: true } } },
     });
   }
 

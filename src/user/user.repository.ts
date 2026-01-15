@@ -28,13 +28,16 @@ export class UserRepository {
   }
 
   async findAll() {
-    const user = await this.prisma.user.findMany();
+    const user = await this.prisma.user.findMany({
+      include: { coworkingSpaces: { select: { name: true } } },
+    });
     return user.map((item) => ({
       id: item.id,
       name: item.name,
       email: item.email,
       phone: item.phone,
       role: item.role,
+      workspace: item.coworkingSpaces,
     }));
   }
 
@@ -43,7 +46,7 @@ export class UserRepository {
     if (user) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...rest } = user;
-      return rest;
+      return { initialName: user.name.charAt(0), ...rest };
     }
   }
 
