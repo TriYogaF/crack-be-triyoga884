@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service.js';
 import { CreateCoworkingSpaceDto } from './dto/create-coworking-space.dto.js';
 import { UpdateCoworkingSpaceDto } from './dto/update-coworking-space.dto.js';
+import { RoomType } from '../generated/prisma/enums.js';
 
 @Injectable()
 export class CoworkingSpaceRepository {
@@ -35,11 +36,11 @@ export class CoworkingSpaceRepository {
     return this.prisma.coworkingSpace.findUnique({ where: { id } });
   }
 
-  findCoworkingSpaceByQuery(name?: string, location?: string) {
+  findCoworkingSpaceByQuery(name?: string, type?: RoomType) {
     return this.prisma.coworkingSpace.findMany({
       where: {
         name: { contains: name, mode: 'insensitive' },
-        address: { contains: location, mode: 'insensitive' },
+        type: { equals: type },
         isActive: true,
         isVerified: true,
       },

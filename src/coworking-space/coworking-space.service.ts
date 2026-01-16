@@ -7,7 +7,7 @@ import { CreateCoworkingSpaceDto } from './dto/create-coworking-space.dto.js';
 import { UpdateCoworkingSpaceDto } from './dto/update-coworking-space.dto.js';
 import { CoworkingSpaceRepository } from './coworking-space.repository.js';
 import { UserRepository } from '../user/user.repository.js';
-import { UserRole } from '../generated/prisma/enums.js';
+import { RoomType, UserRole } from '../generated/prisma/enums.js';
 
 @Injectable()
 export class CoworkingSpaceService {
@@ -52,11 +52,8 @@ export class CoworkingSpaceService {
     return workspaces;
   }
 
-  async findCoworkingSpaceByQuery(name: string, location: string) {
-    const workspaces = await this.repo.findCoworkingSpaceByQuery(
-      name,
-      location,
-    );
+  async findCoworkingSpaceByQuery(name: string, type: RoomType) {
+    const workspaces = await this.repo.findCoworkingSpaceByQuery(name, type);
     if (workspaces.length === 0)
       throw new NotFoundException('No coworking spaces found');
     return workspaces;

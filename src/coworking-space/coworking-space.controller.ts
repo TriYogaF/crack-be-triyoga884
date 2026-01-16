@@ -17,6 +17,7 @@ import { JwtAuthGuard } from '../auth/jwt.auth-guard.js';
 import { RolesGuard } from '../common/guards/roles.guard.js';
 import { Roles } from '../common/decorators/roles.decorator.js';
 import type { reqProp } from '../common/types/types.js';
+import { RoomType } from '../generated/prisma/enums.js';
 
 @Controller('workspaces')
 export class CoworkingSpaceController {
@@ -32,13 +33,9 @@ export class CoworkingSpaceController {
     return this.coworkingSpaceService.create(createCoworkingSpaceDto, req.user);
   }
 
-  @Get('search')
-  @Roles('USER', 'PROVIDER', 'ADMIN')
-  findByQuery(
-    @Query('name') name: string,
-    @Query('location') location: string,
-  ) {
-    return this.coworkingSpaceService.findCoworkingSpaceByQuery(name, location);
+  @Get()
+  findByQuery(@Query('name') name: string, @Query('type') type: RoomType) {
+    return this.coworkingSpaceService.findCoworkingSpaceByQuery(name, type);
   }
 
   @Get()
