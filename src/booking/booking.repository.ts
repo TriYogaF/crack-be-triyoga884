@@ -40,6 +40,12 @@ export class BookingRepository {
   findAllMyBookings(userId: string) {
     return this.prisma.booking.findMany({
       where: { userId },
+      include: {
+        coworkingSpace: {
+          select: { name: true, address: true, capacity: true },
+        },
+        payment: { select: { status: true } },
+      },
     });
   }
 
